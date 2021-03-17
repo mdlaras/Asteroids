@@ -61,6 +61,7 @@ public class ship_move : MonoBehaviour
             Offset = newVector * 0.5f;
             ProjectileClone = Instantiate(Projectile);
             ProjectileClone.transform.position = shipBody.position + Offset;
+            ProjectileClone.transform.eulerAngles = shipBody.eulerAngles;
         }
         
         shipBody.position += AccumulatedVelocity * Time.deltaTime;

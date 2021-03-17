@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2288556044954425808, guid: 3225f31f1ef397a47b1435cae9b77255,
         type: 3}
+      propertyPath: hit_score
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288556044954425808, guid: 3225f31f1ef397a47b1435cae9b77255,
+        type: 3}
       propertyPath: childmaker
       value: 
       objectReference: {fileID: 3042700807198077372, guid: 8e18c97f8f681ec4fb2d8b4bb12cc0f6,
@@ -96,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 5613059774145749208, guid: 3225f31f1ef397a47b1435cae9b77255,
         type: 3}
       propertyPath: speed
-      value: 0.12
+      value: 0.32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3225f31f1ef397a47b1435cae9b77255, type: 3}
