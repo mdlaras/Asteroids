@@ -7,6 +7,7 @@ public class ship_move : MonoBehaviour
 {
     [SerializeField] Transform shipBody;
     [SerializeField] GameObject Projectile;
+    [SerializeField] Animator ship_animator; 
     float shipZAngleSnapShot;
     float shipZAngle;
     public Vector3 newVector;
@@ -16,6 +17,7 @@ public class ship_move : MonoBehaviour
     float y2;
     float velocity;
     Vector3 AccumulatedVelocity;
+    float shipTimer;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class ship_move : MonoBehaviour
 
     void Update()
     {
+        
         if (velocity > 1)
         {
             velocity -= 0.05f;
@@ -54,8 +57,15 @@ public class ship_move : MonoBehaviour
         {
             Vector3.Normalize(newVector);
             AccumulatedVelocity += newVector * velocity;
+            ship_animator.SetBool("Up Arrow", true);
+            shipTimer = Time.time;
         }
-        
+
+        if (Time.time - shipTimer > 0.5f)
+        {
+            ship_animator.SetBool("Up Arrow", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Offset = newVector * 0.5f;

@@ -9,6 +9,7 @@ public class detect_collision : MonoBehaviour
     [SerializeField] bool is_asteroid;
     [SerializeField] live live;
     [SerializeField] float collision_timespan;
+    [SerializeField] Animator hit_animator;
     score score_manager;
     [SerializeField] int hit_score;
     bool collided=false;
@@ -27,6 +28,7 @@ public class detect_collision : MonoBehaviour
         if (Time.time - collision_time > collision_timespan && collided==true)
         {
             collided = false;
+            hit_animator.SetBool("Ship Hit", false);
         }
 
         if (is_asteroid is true)
@@ -54,6 +56,7 @@ public class detect_collision : MonoBehaviour
                 {
                     live.reduce_live(1);
                     collided = true;
+                    hit_animator.SetBool("Ship Hit", true);
                     collision_time= Time.time;
                 }
             }
