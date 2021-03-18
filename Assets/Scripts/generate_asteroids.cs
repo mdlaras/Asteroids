@@ -35,7 +35,7 @@ public class generate_asteroids : MonoBehaviour
     {
         var generator_randomizer = Random.Range(1,1000);
 
-        if(generator_randomizer < 2)
+        if(generator_randomizer < density/5)
         {
             var randomizer_x = Random.value;
             var randomizer_y = Random.value;

@@ -10,7 +10,37 @@ PrefabInstance:
     - target: {fileID: -4449526225708644467, guid: 51075817ee15a3f41be2292ae028c084,
         type: 3}
       propertyPath: speed
-      value: 0.24
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: Priority
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 1181938441117712004, guid: 51075817ee15a3f41be2292ae028c084,
         type: 3}

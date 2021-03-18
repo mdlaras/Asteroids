@@ -11,6 +11,7 @@ public class detect_collision : MonoBehaviour
     [SerializeField] float collision_timespan;
     [SerializeField] Animator hit_animator;
     score score_manager;
+    game_manager game;
     [SerializeField] int hit_score;
     bool collided=false;
     float collision_time = 0;
@@ -20,6 +21,7 @@ public class detect_collision : MonoBehaviour
     void Start()
     {
         score_manager = FindObjectOfType<score>();
+        game = FindObjectOfType<game_manager>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,8 @@ public class detect_collision : MonoBehaviour
                 var projectile_relative_position = Mathf.Pow(projectile.transform.position.x - transform.position.x, 2) + Mathf.Pow(projectile.transform.position.y - transform.position.y, 2);
                 if (projectile_relative_position < collision_boundary)
                 {
+                    game.PlayCrashSound();
+                    collided = true;
                     Destroy(projectile.gameObject);
                     score_manager.Update_Score(hit_score);
                     childmaker.instantiate_child(transform);
@@ -54,6 +58,7 @@ public class detect_collision : MonoBehaviour
                 var asteroid_relative_position = Mathf.Pow(asteroid.transform.position.x - transform.position.x, 2) + Mathf.Pow(asteroid.transform.position.y - transform.position.y, 2);
                 if (asteroid_relative_position < collision_boundary && collided ==false)
                 {
+                    game.PlayCrashSound();
                     live.reduce_live(1);
                     collided = true;
                     hit_animator.SetBool("Ship Hit", true);
