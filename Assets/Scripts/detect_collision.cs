@@ -13,7 +13,7 @@ public class detect_collision : MonoBehaviour
     score score_manager;
     game_manager game;
     [SerializeField] int hit_score;
-    bool collided=false;
+    bool has_collided=false;
     float collision_time = 0;
 
 
@@ -27,9 +27,9 @@ public class detect_collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - collision_time > collision_timespan && collided==true)
+        if (Time.time - collision_time > collision_timespan && has_collided==true)
         {
-            collided = false;
+            has_collided = false;
             hit_animator.SetBool("Ship Hit", false);
         }
 
@@ -41,11 +41,11 @@ public class detect_collision : MonoBehaviour
                 var projectile_relative_position = Mathf.Pow(projectile.transform.position.x - transform.position.x, 2) + Mathf.Pow(projectile.transform.position.y - transform.position.y, 2);
                 if (projectile_relative_position < collision_boundary)
                 {
-                    game.PlayCrashSound();
-                    collided = true;
+                    game.Play_Crash_Sound();
+                    has_collided = true;
                     Destroy(projectile.gameObject);
                     score_manager.Update_Score(hit_score);
-                    childmaker.instantiate_child(transform);
+                    childmaker.Instantiate_Child(transform);
                     Destroy(gameObject);
                 }
             }
@@ -56,11 +56,11 @@ public class detect_collision : MonoBehaviour
             foreach (asteroid_move asteroid in asteroids)
             {
                 var asteroid_relative_position = Mathf.Pow(asteroid.transform.position.x - transform.position.x, 2) + Mathf.Pow(asteroid.transform.position.y - transform.position.y, 2);
-                if (asteroid_relative_position < collision_boundary && collided ==false)
+                if (asteroid_relative_position < collision_boundary && has_collided ==false)
                 {
-                    game.PlayCrashSound();
+                    game.Play_Crash_Sound();
                     live.reduce_live(1);
-                    collided = true;
+                    has_collided = true;
                     hit_animator.SetBool("Ship Hit", true);
                     collision_time= Time.time;
                 }

@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: speed
       value: 0.35
       objectReference: {fileID: 0}
+    - target: {fileID: -4449526225708644467, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+      propertyPath: velocity
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: -4015087584427863784, guid: 51075817ee15a3f41be2292ae028c084,
         type: 3}
       propertyPath: Priority

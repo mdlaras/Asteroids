@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class generate_asteroids : MonoBehaviour
 {
-    [SerializeField] int density;
-    [SerializeField] asteroid_move big_ast;
-    [SerializeField] asteroid_move med_ast;
-    [SerializeField] asteroid_move small_ast;
+    [SerializeField] int asteroids_density;
+    [SerializeField] asteroid_move big_asteroid;
+    [SerializeField] asteroid_move medium_asteroid;
+    [SerializeField] asteroid_move small_asteroid;
 
-    void Start()
-    {
-        for (int asteroid_iterator = 0; asteroid_iterator < density; asteroid_iterator++)
-        {
-            var ast_position = new Vector3(Random.Range(-7, 7), Random.Range(-5, 4.9f), 0);
-            var size = Random.Range(1, 3);
-            if(size == 1)
+    void Instantiate_Random_Asteroids(Vector3 position){
+        var size = Random.Range(1, 3);
+        if(size == 1)
             {
-                Instantiate(big_ast, ast_position, Quaternion.identity);
+                Instantiate(big_asteroid, position, Quaternion.identity);
             } 
             if(size == 2)
             {
-                Instantiate(med_ast, ast_position, Quaternion.identity);
+                Instantiate(medium_asteroid, position, Quaternion.identity);
             }
             if(size == 3)
             {
-                Instantiate(small_ast, ast_position, Quaternion.identity);
+                Instantiate(small_asteroid, position, Quaternion.identity);
             }
+    }
+
+    void Start()
+    {
+        for (int asteroid_iterator = 0; asteroid_iterator < asteroids_density; asteroid_iterator++)
+        {
+            var asteroid_position = new Vector3(Random.Range(-7, 7), Random.Range(-5, 4.9f), 0);
+            Instantiate_Random_Asteroids(asteroid_position);
         }
     }
 
@@ -35,54 +39,43 @@ public class generate_asteroids : MonoBehaviour
     {
         var generator_randomizer = Random.Range(1,1000);
 
-        if(generator_randomizer < density/5)
+        if(generator_randomizer < asteroids_density/5)
         {
-            var randomizer_x = Random.value;
-            var randomizer_y = Random.value;
-            var post_randomizer = Random.value;
-            float ast_position_x;
-            float ast_position_y;
-            if(post_randomizer < 0.5)
+            var x_randomizer = Random.value;
+            var y_randomizer = Random.value;
+            var position_randomizer = Random.value;
+            float asteroid_position_x;
+            float asteroid_position_y;
+            if(position_randomizer < 0.5)
             {
-                if (randomizer_y < 0.5)
+                if (y_randomizer < 0.5)
                 {
-                    ast_position_y = -5;
+                    asteroid_position_y = -5;
                 }
                 else
                 {
-                    ast_position_y = 4.8f;
+                    asteroid_position_y = 4.8f;
                 }
-                ast_position_x = Random.Range(-7, 7);
+                asteroid_position_x = Random.Range(-7, 7);
             }
             else
             {
-                if (randomizer_x < 0.5)
+                if (x_randomizer < 0.5)
                 {
-                    ast_position_x = -7;
+                    asteroid_position_x = -7;
                 }
                 else
                 {
-                    ast_position_x = 7;
+                    asteroid_position_x = 7;
                 }
-                ast_position_y = Random.Range(-5, 4.9f);
+                asteroid_position_y = Random.Range(-5, 4.9f);
             }
 
             
 
-            var ast_position = new Vector3(ast_position_x, ast_position_y, 0);
+            var asteroid_position = new Vector3(asteroid_position_x, asteroid_position_y, 0);
             var size = Random.Range(1, 3);
-            if (size == 1)
-            {
-                Instantiate(big_ast, ast_position, Quaternion.identity);
-            }
-            if (size == 2)
-            {
-                Instantiate(med_ast, ast_position, Quaternion.identity);
-            }
-            if (size == 3)
-            {
-                Instantiate(small_ast, ast_position, Quaternion.identity);
-            }
+            Instantiate_Random_Asteroids(asteroid_position);
         }
     }
 }

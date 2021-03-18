@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child_asteroid: {fileID: 2288556044954425807, guid: 3225f31f1ef397a47b1435cae9b77255,
     type: 3}
-  instantiate: 1
+  tobe_instantiated: 1

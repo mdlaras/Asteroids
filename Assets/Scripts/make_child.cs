@@ -5,11 +5,11 @@ using UnityEngine;
 public class make_child : MonoBehaviour
 {
     [SerializeField] GameObject child_asteroid;
-    [SerializeField] bool instantiate;
+    [SerializeField] bool tobe_instantiated;
     // Start is called before the first frame update
-    public void instantiate_child(Transform parent_position)
+    public void Instantiate_Child(Transform parent_position)
     {
-        if (instantiate){
+        if (tobe_instantiated){
             Instantiate(child_asteroid, parent_position.position, Quaternion.identity);
             Instantiate(child_asteroid, parent_position.position, Quaternion.identity);
         }

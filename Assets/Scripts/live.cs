@@ -20,23 +20,23 @@ public class live : MonoBehaviour
         lives_left -= reducer;
         if(lives_left < 0)
         {
-            game_Manager.GameOver();
+            game_Manager.End_Game();
             Destroy(gameObject);
         }
     }
 
     private void Update()
     {
-        for (int healthiterator = 0; healthiterator < health.Length; healthiterator++)
+        for (int health_iterator = 0; health_iterator < health.Length; health_iterator++)
         {
             
-            if(healthiterator < lives_left)
+            if(health_iterator < lives_left)
             {
-                health[healthiterator].sprite = available_life;
+                health[health_iterator].sprite = available_life;
             }
             else
             {
-                health[healthiterator].sprite = disabled_life;
+                health[health_iterator].sprite = disabled_life;
             }
                 
         }

@@ -5,28 +5,48 @@ using UnityEngine;
 
 public class ship_move : MonoBehaviour
 {
-    [SerializeField] Transform shipBody;
-    [SerializeField] GameObject Projectile;
+    [SerializeField] Transform ship_body;
+    [SerializeField] GameObject projectile;
     [SerializeField] Animator ship_animator; 
-    float shipZAngleSnapShot;
-    float shipZAngle;
-    public Vector3 newVector;
-    public GameObject ProjectileClone;
-    Vector3 Offset;
-    float x2;
-    float y2;
+    float ship_z_angle_snapshot;
+    float ship_z_angle;
+    public Vector3 new_ship_position;
+    public GameObject projectile_clone;
+    Vector3 ship_offset;
+    float new_ship_x_position;
+    float new_ship_y_position;
     float velocity;
-    Vector3 AccumulatedVelocity;
-    float shipTimer;
+    Vector3 accumulated_velocity;
+    float ship_thrust_timer;
+    game_manager game;
 
     void Start()
     {
         velocity = 2f;
-        shipZAngle = shipBody.rotation.z;
-        shipZAngleSnapShot = shipZAngle;
-        newVector = new Vector3(0, 1, 0f);
+        ship_z_angle = ship_body.rotation.z;
+        ship_z_angle_snapshot = ship_z_angle;
+        new_ship_position = new Vector3(0, 1, 0f);
+        game = FindObjectOfType<game_manager>();
     }
 
+    void Rotate_Ship(string direction){
+        if(direction.Equals("right")){
+            ship_z_angle = -90*Time.deltaTime * 5;
+            ship_z_angle_snapshot += ship_z_angle;
+            ship_body.eulerAngles = new Vector3(0, 0, ship_z_angle_snapshot);
+            new_ship_x_position = ( Mathf.Sin(ship_z_angle_snapshot * Mathf.Deg2Rad + Mathf.PI));
+            new_ship_y_position = ( Mathf.Cos(ship_z_angle_snapshot * Mathf.Deg2Rad));
+            new_ship_position = new Vector3(new_ship_x_position, new_ship_y_position, 0f);
+        }
+        else if(direction.Equals("left")){
+            ship_z_angle = 90 * Time.deltaTime *5 ;
+            ship_z_angle_snapshot += ship_z_angle;
+            ship_body.eulerAngles = new Vector3(0, 0, ship_z_angle_snapshot);
+            new_ship_x_position = (Mathf.Sin(ship_z_angle_snapshot * Mathf.Deg2Rad + Mathf.PI));
+            new_ship_y_position = (Mathf.Cos(ship_z_angle_snapshot * Mathf.Deg2Rad));
+            new_ship_position = new Vector3(new_ship_x_position, new_ship_y_position, 0f);
+        }
+    }
     void Update()
     {
         
@@ -36,54 +56,34 @@ public class ship_move : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            shipZAngle = -90*Time.deltaTime * 5;
-            shipZAngleSnapShot += shipZAngle;
-            shipBody.eulerAngles = new Vector3(0, 0, shipZAngleSnapShot);
-            x2 = ( Mathf.Sin(shipZAngleSnapShot * Mathf.Deg2Rad + Mathf.PI));
-            y2 = ( Mathf.Cos(shipZAngleSnapShot * Mathf.Deg2Rad));
-            newVector = new Vector3(x2, y2, 0f);
+            Rotate_Ship("right");
         } 
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            
-            shipZAngle = 90 * Time.deltaTime *5 ;
-            shipZAngleSnapShot += shipZAngle;
-            shipBody.eulerAngles = new Vector3(0, 0, shipZAngleSnapShot);
-            x2 = (Mathf.Sin(shipZAngleSnapShot * Mathf.Deg2Rad + Mathf.PI));
-            y2 = (Mathf.Cos(shipZAngleSnapShot * Mathf.Deg2Rad));
-            newVector = new Vector3(x2, y2, 0f);
+            Rotate_Ship("left");
         }
         else if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Vector3.Normalize(newVector);
-            AccumulatedVelocity += newVector * velocity;
+            Vector3.Normalize(new_ship_position);
+            accumulated_velocity += new_ship_position * velocity;
             ship_animator.SetBool("Up Arrow", true);
-            shipTimer = Time.time;
+            ship_thrust_timer = Time.time;
         }
 
-        if (Time.time - shipTimer > 0.5f)
+        if (Time.time - ship_thrust_timer > 0.5f)
         {
             ship_animator.SetBool("Up Arrow", false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Offset = newVector * 0.5f;
-            ProjectileClone = Instantiate(Projectile);
-            ProjectileClone.transform.position = shipBody.position + Offset;
-            ProjectileClone.transform.eulerAngles = shipBody.eulerAngles;
+            ship_offset = new_ship_position * 0.5f;
+            projectile_clone = Instantiate(projectile, ship_body.position + ship_offset, Quaternion.identity);
+            projectile_clone.transform.eulerAngles = ship_body.eulerAngles;
         }
         
-        shipBody.position += AccumulatedVelocity * Time.deltaTime;
+        ship_body.position += accumulated_velocity * Time.deltaTime;
 
-        if (shipBody.position.x < -7 || shipBody.position.x > 7)
-        {
-            shipBody.position = new Vector3(shipBody.position.x * -1, shipBody.position.y, shipBody.position.z);
-        }
-
-        if (shipBody.position.y > 5.2 || shipBody.position.y < -5.2)
-        {
-            shipBody.position = new Vector3(shipBody.position.x, shipBody.position.y * -1, shipBody.position.z);
-        }
+        game.Warp_Object(ship_body);
     }
 }

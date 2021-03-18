@@ -460,9 +460,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1131888290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27cd3e574693dec4d8269460f54da4ff, type: 3}
+  m_Script: {fileID: 11500000, guid: b55132f289f54fe4e8fe139c9b116108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroids_density: 20
+  big_asteroid: {fileID: -4449526225708644467, guid: 51075817ee15a3f41be2292ae028c084,
+    type: 3}
+  medium_asteroid: {fileID: 5613059774145749208, guid: 3225f31f1ef397a47b1435cae9b77255,
+    type: 3}
+  small_asteroid: {fileID: 6894515326474212330, guid: 1d7f5c8dd781a774d823e4ffa8a09578,
+    type: 3}
 --- !u!4 &1131888292
 Transform:
   m_ObjectHideFlags: 0
@@ -559,8 +566,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1131888291}
-        m_MethodName: RestartGame
+      - m_Target: {fileID: -2743210326476537451, guid: 266bcbd7a70838d4fb5805163940aed2,
+          type: 3}
+        m_MethodName: Restart_Game
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

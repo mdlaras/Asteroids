@@ -102,8 +102,6 @@ MonoBehaviour:
   live: {fileID: 0}
   collision_timespan: 0
   hit_animator: {fileID: 0}
-  crash_audio: {fileID: -4749330340986384777, guid: 266bcbd7a70838d4fb5805163940aed2,
-    type: 3}
   hit_score: 20
 --- !u!114 &-4449526225708644467
 MonoBehaviour:
@@ -117,4 +115,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e3bcef82a2d2f4293a801ef807c56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  velocity: 0.3

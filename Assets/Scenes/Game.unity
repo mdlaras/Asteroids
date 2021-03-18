@@ -581,6 +581,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6894515326474212330, guid: 1d7f5c8dd781a774d823e4ffa8a09578,
         type: 3}
+    - target: {fileID: -8572372009781925100, guid: 266bcbd7a70838d4fb5805163940aed2,
+        type: 3}
+      propertyPath: big_asteroid
+      value: 
+      objectReference: {fileID: -4449526225708644467, guid: 51075817ee15a3f41be2292ae028c084,
+        type: 3}
+    - target: {fileID: -8572372009781925100, guid: 266bcbd7a70838d4fb5805163940aed2,
+        type: 3}
+      propertyPath: small_asteroid
+      value: 
+      objectReference: {fileID: 6894515326474212330, guid: 1d7f5c8dd781a774d823e4ffa8a09578,
+        type: 3}
+    - target: {fileID: -8572372009781925100, guid: 266bcbd7a70838d4fb5805163940aed2,
+        type: 3}
+      propertyPath: medium_asteroid
+      value: 
+      objectReference: {fileID: 5613059774145749208, guid: 3225f31f1ef397a47b1435cae9b77255,
+        type: 3}
+    - target: {fileID: -8572372009781925100, guid: 266bcbd7a70838d4fb5805163940aed2,
+        type: 3}
+      propertyPath: asteroids_density
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -4749330340986384777, guid: 266bcbd7a70838d4fb5805163940aed2,
         type: 3}
       propertyPath: BypassEffects
