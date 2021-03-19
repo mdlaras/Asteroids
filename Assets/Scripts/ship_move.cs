@@ -32,20 +32,15 @@ public class ship_move : MonoBehaviour
     void Rotate_Ship(string direction){
         if(direction.Equals("right")){
             ship_z_angle = -90*Time.deltaTime * 5;
-            ship_z_angle_snapshot += ship_z_angle;
-            ship_body.eulerAngles = new Vector3(0, 0, ship_z_angle_snapshot);
-            new_ship_x_position = ( Mathf.Sin(ship_z_angle_snapshot * Mathf.Deg2Rad + Mathf.PI));
-            new_ship_y_position = ( Mathf.Cos(ship_z_angle_snapshot * Mathf.Deg2Rad));
-            new_ship_position = new Vector3(new_ship_x_position, new_ship_y_position, 0f);
         }
         else if(direction.Equals("left")){
             ship_z_angle = 90 * Time.deltaTime *5 ;
-            ship_z_angle_snapshot += ship_z_angle;
-            ship_body.eulerAngles = new Vector3(0, 0, ship_z_angle_snapshot);
-            new_ship_x_position = (Mathf.Sin(ship_z_angle_snapshot * Mathf.Deg2Rad + Mathf.PI));
-            new_ship_y_position = (Mathf.Cos(ship_z_angle_snapshot * Mathf.Deg2Rad));
-            new_ship_position = new Vector3(new_ship_x_position, new_ship_y_position, 0f);
         }
+        ship_z_angle_snapshot += ship_z_angle;
+        ship_body.eulerAngles = new Vector3(0, 0, ship_z_angle_snapshot);
+        new_ship_x_position = (Mathf.Sin(ship_z_angle_snapshot * Mathf.Deg2Rad + Mathf.PI));
+        new_ship_y_position = (Mathf.Cos(ship_z_angle_snapshot * Mathf.Deg2Rad));
+        new_ship_position = new Vector3(new_ship_x_position, new_ship_y_position, 0f);
     }
     void Update()
     {
